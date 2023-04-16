@@ -1,0 +1,43 @@
+public static void main(String[] args) {
+		int matrix[][]= {{1,1,1},{1,1,1},{1,1,1}};
+		printPaths(matrix,0,0,"");
+		}
+
+	private static void printPaths(int[][] matrix, int row, int column, String str) 
+	{
+		if(row==matrix.length-1 && column==matrix.length-1)
+		{
+			System.out.println(str);
+			return;
+		}
+		if(matrix[row][column]==0)
+		{
+			return;
+		}
+		int temp=matrix[row][column];
+		matrix[row][column]=0;
+		
+		if(row<matrix.length-1)
+		{
+			printPaths(matrix,row+1,column,str+"d");
+		}
+		if(column<matrix[0].length-1)
+		{
+			printPaths(matrix,row,column+1,str+"r");
+		}
+		if(row>0)
+		{
+			printPaths(matrix,row-1,column,str+"u");
+		}
+		if(column>0)
+		{
+			printPaths(matrix,row,column-1,str+"l");
+		}
+		matrix[row][column]=temp;
+	}
+
+	
+	}
+	
+	       
+
