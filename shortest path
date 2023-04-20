@@ -1,0 +1,33 @@
+	public static void main(String[] args) {
+      char[][]matrix= {{'x','x','x','g'},{'x','x','x','x'},{'x','x','x','x'},{'x','a','x','x'}};
+      //find(matrix,3,1,0,3,0,find(matrix,3,1,0,3,0,Integer.MAX_VALUE);
+      System.out.println(find(matrix,3,1,0,3,0,Integer.MAX_VALUE));
+	    }
+
+	private static int find(char[][] matrix, int i, int j, int k, int l, int steps,int min) 
+	{
+		 if (i == k && j == l) {
+		        if (steps < min) {
+		            min = steps;
+		        }
+		        return min;
+		    }
+		    if (i < 0 || j < 0 || i >= matrix.length || j >= matrix[0].length) {
+		        return min;
+		    }
+		    if (matrix[i][j] == '*') {
+		        return min;
+		    }
+		    char temp = matrix[i][j];
+		    matrix[i][j] = '*';
+		    min = Math.min(min, find(matrix, i + 1, j, k, l, steps + 1, min));
+		    min = Math.min(min, find(matrix, i - 1, j, k, l, steps + 1, min));
+		    min = Math.min(min, find(matrix, i, j + 1, k, l, steps + 1, min));
+		    min = Math.min(min, find(matrix, i, j - 1, k, l, steps + 1, min));
+		    matrix[i][j] = temp;
+		    return min;
+	}
+	}
+
+
+
