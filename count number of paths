@@ -1,0 +1,33 @@
+Scanner scanner = new Scanner(System.in);
+		int[][] matrix = { { 1, 0, 0, 1 }, { 1, 0, 1, 0 }, { 1, 1, 1, 0 }, { 0, 1, 1, 1 } };
+		System.out.println("enter starting position");
+		int startRow = scanner.nextInt();
+		int startColumn = scanner.nextInt();
+		System.out.println("enter end position");
+		int endRow = scanner.nextInt();
+		int endColumn = scanner.nextInt();
+		int count = countPaths(matrix, startRow, startColumn, endRow, endColumn);
+		System.out.println(count);
+	}
+
+	private static int countPaths(int[][] matrix, int startRow, int startColumn, int endRow, int endColumn) {
+
+		 if (startRow == endRow && startColumn == endColumn) {
+		        return 1;
+		    }
+		    if (startRow < 0 || startColumn < 0 || startRow >= matrix.length || startColumn >= matrix[0].length) {
+		        return 0;
+		    }
+		    if (matrix[startRow][startColumn] == 0) {
+		        return 0;
+		    }
+		    int count = 0;
+		    matrix[startRow][startColumn] = 0; // mark current node as visited
+		    count += countPaths(matrix, startRow + 1, startColumn, endRow, endColumn);
+		    count += countPaths(matrix, startRow - 1, startColumn, endRow, endColumn);
+		    count += countPaths(matrix, startRow, startColumn + 1, endRow, endColumn);
+		    count += countPaths(matrix, startRow, startColumn - 1, endRow, endColumn);
+		    matrix[startRow][startColumn] = 1; // unmark current node
+		    return count;
+	}
+}
