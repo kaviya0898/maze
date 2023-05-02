@@ -1,0 +1,61 @@
+public static void main(String[] args) {
+		 int[][] matrix = {
+		            {1, 1, 0, 0},
+		            {0, 1, 1, 1},
+		            {0, 0, 1, 1},
+		            {1, 1, 1, 1}};
+		 int [][]path=new int[matrix.length][matrix[0].length];
+		 if(findWay(matrix,0,0,path))
+		 {
+			 for(int row=0;row<matrix.length;row++)
+			 {
+				 for(int column=0;column<matrix[0].length;column++)
+				 {
+					 if(path[row][column]==1)
+					 {
+						 System.out.print("-"+" ");
+					 }
+					 else
+					 {
+						 System.out.print(matrix[row][column]+" ");
+					 }
+					 
+				 }
+				 System.out.println();
+			 }
+		 }
+		 
+		        
+
+		      
+		    }
+
+	private static boolean findWay(int[][] matrix, int row, int column, int[][] path) {
+		
+		if(row==matrix.length-1 && column==matrix.length-1)
+		{
+			path[row][column]=1;
+			return true;
+		}
+		
+		if(row>=matrix.length || column>=matrix.length || matrix[row][column]==0)
+		{
+			return false;
+		}
+		
+		path[row][column]=1;
+		
+		if(findWay(matrix,row+1,column,path))
+		{
+			return true;
+		}
+		
+		if(findWay(matrix,row,column+1,path))
+		{
+			return true;
+		}
+		path[row][column]=0;
+		return false;
+	}
+		}
+		
