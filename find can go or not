@@ -1,0 +1,26 @@
+public static void main(String[] args) {
+	
+		int matrix[][]= {{1,0,0,0},{0,1,1,0},{1,1,1,1},{0,0,1,1}};
+		
+		System.out.println(findPath(matrix,0,0,1,2));
+		
+		
+		
+		    }
+
+	private static boolean findPath(int[][] matrix, int i, int j, int k, int l) {
+		
+		if(i==k && j==l && matrix[k][l]==1)
+		{
+			return true;
+		}
+		if(i>=matrix.length || j>=matrix.length || matrix[i][j]==0)
+		{
+			return false;
+		}
+		 return findPath(matrix,i+1,j,k,l)|| findPath(matrix,i,j+1,k,l);
+		
+		
+	}
+		
+	}
