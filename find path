@@ -1,0 +1,51 @@
+public static void main(String[] args) {
+	
+	int matrix[][]= {{1,1,0,0},{1,0,0,1},{1,1,1,1},{0,0,0,1}};
+	int path[][]=new int[matrix.length][matrix[0].length];
+	 dfs(0,0,matrix.length-1,matrix[0].length-1,path,matrix);
+	 
+	 for(int row=0;row<matrix.length;row++)
+	 {
+		 for(int column=0;column<matrix.length;column++)
+		 {
+			 System.out.print(path[row][column]);
+		 }
+		 System.out.println();
+	 }
+	 
+	}
+
+	private static void dfs(int row, int column, int  endRow, int endColumn, int[][] path,int matrix[][]) {
+		
+		if (row >= matrix.length || column >= matrix[0].length || matrix[row][column] == 0) {
+	        return;
+	    }
+
+	    if (row == endRow && column == endColumn) {
+	        path[row][column] = 1;
+	        return;
+	    }
+
+	   
+	    path[row][column] = 1;
+
+	    System.out.println(Arrays.deepToString(path));
+	    dfs(row + 1, column, endRow, endColumn, path, matrix);
+
+	    
+	    if (path[endRow][endColumn] != 1) {
+	       
+	        dfs(row, column + 1, endRow, endColumn, path, matrix);
+	    }
+
+	    
+	    if (path[endRow][endColumn] != 1) {
+	        path[row][column] = 0;
+	    }
+	}
+	
+
+
+
+		
+	}
